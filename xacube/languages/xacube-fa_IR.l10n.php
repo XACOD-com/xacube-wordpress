@@ -104,5 +104,9 @@ return array(
 		'Public key'                                                      => 'کلید عمومی',
 		'Downloaded'                                                      => 'تاریخ دریافت',
 		'Plugin version'                                                  => 'نگارش افزونه',
+		'Live chat'                                                       => 'گفتگوی زنده',
+		'Open the full inbox'                                             => 'باز کردن صندوق کامل',
+		'Connect once to read and answer your chats right here.'          => 'یک بار وصل شوید تا گفتگوها را همین‌جا بخوانید و پاسخ دهید.',
+		'Chats waiting: %s'                                               => 'گفتگوهای در انتظار: %s',
 	),
 );
