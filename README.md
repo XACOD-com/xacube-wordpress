@@ -6,18 +6,19 @@ Add live chat to your WordPress site and answer visitors from your XACUBE inbox,
 
 ## What it does
 
-- Shows the chat on your site, already set up for that site
-- Lets administrators answer conversations inside WordPress admin
+- Shows the chat on your site once you connect it
+- Lets administrators answer conversations on the WordPress Dashboard
 - Recognises signed-in WordPress users, if you turn that on
 - Updates from the WordPress Plugins screen
 
 ## Install
 
-1. Sign in to [XACUBE](https://app.xacube.ir) and add your website under **Websites**.
-2. Download the WordPress plugin from that website's page. This copy is set up for your site.
-3. In WordPress, go to **Plugins → Add New → Upload Plugin**, upload the zip and activate it.
+1. Download the latest zip from the [Releases](../../releases) page.
+2. In WordPress, go to **Plugins → Add New → Upload Plugin**, upload the zip and activate it.
+3. Open **XACUBE** in the admin menu and press **Connect to XACUBE**.
+4. Sign in or create a free account, choose your workspace and approve.
 
-The zips on the [Releases](../../releases) page are plain packages with no site attached. On its own, a plain package does not show a chat, so use the copy from your panel for a new install.
+XACUBE allows your domain, the chat goes live, and you can answer visitors on your WordPress Dashboard.
 
 ## Requirements
 
@@ -47,4 +48,4 @@ GPL v2 or later. See [LICENSE](LICENSE). The bundled Inter and Vazirmatn fonts a
 
 با این افزونه، گفتگوی آنلاین XACUBE را به سایت وردپرسی خود اضافه می‌کنید و از داخل پیشخوان وردپرس به بازدیدکنندگان پاسخ می‌دهید.
 
-برای نصب، در [پنل XACUBE](https://app.xacube.ir) سایت خود را در بخش **وب‌سایت‌ها** اضافه کنید، افزونهٔ مخصوص آن را دریافت کنید و در وردپرس از مسیر **افزونه‌ها ← افزودن ← بارگذاری افزونه** نصب و فعال کنید.
+برای نصب، آخرین فایل را از بخش [Releases](../../releases) دریافت کنید و در وردپرس از مسیر **افزونه‌ها ← افزودن ← بارگذاری افزونه** نصب و فعال کنید. سپس منوی **XACUBE** را باز کنید، «اتصال به XACUBE» را بزنید، وارد شوید و تأیید کنید.
