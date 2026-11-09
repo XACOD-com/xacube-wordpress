@@ -1,6 +1,22 @@
 {
   "releases": [
     {
+      "version": "1.3.0",
+      "date": "2026-11-09",
+      "requires": "6.5",
+      "requiresPhp": "7.4",
+      "changes": {
+        "en": [
+          "See and answer live chats in a Live chat panel at the top of your WordPress Dashboard.",
+          "A counter in the WordPress menu and top bar shows how many chats are waiting for a reply."
+        ],
+        "fa": [
+          "مشاهده و پاسخ به گفتگوهای زنده در پنل «گفتگوی زنده»، بالای پیشخوان وردپرس.",
+          "شمارنده‌ای در منو و نوار بالای وردپرس، تعداد گفتگوهای در انتظار پاسخ را نشان می‌دهد."
+        ]
+      }
+    },
+    {
       "version": "1.2.0",
       "date": "2026-11-09",
       "requires": "6.5",
