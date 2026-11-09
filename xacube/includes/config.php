@@ -50,6 +50,27 @@ function xacube_config() {
 }
 
 /**
+ * The XACUBE panel this plugin talks to: the connected site's, or the default before it connects.
+ *
+ * @return string
+ */
+function xacube_app_origin() {
+	$config = xacube_config();
+
+	return $config ? $config['app_origin'] : XACUBE_APP_ORIGIN;
+}
+
+/**
+ * Whether the configuration comes from a xacube-config.php shipped with the plugin. Such a copy
+ * cannot be switched to another website from WordPress.
+ *
+ * @return bool
+ */
+function xacube_config_is_file() {
+	return is_readable( XACUBE_DIR . 'xacube-config.php' );
+}
+
+/**
  * Scheme, host and port of a URL, with nothing after them. Empty when it is not http(s).
  *
  * @param string $url Any URL.

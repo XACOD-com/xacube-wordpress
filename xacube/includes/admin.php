@@ -10,19 +10,33 @@ defined( 'ABSPATH' ) || exit;
 add_action( 'admin_menu', 'xacube_admin_menu' );
 add_action( 'admin_init', 'xacube_activation_redirect' );
 add_action( 'admin_enqueue_scripts', 'xacube_admin_assets' );
+add_action( 'admin_head', 'xacube_menu_icon_style' );
 add_action( 'admin_post_xacube_save', 'xacube_save_settings' );
 add_filter( 'plugin_action_links_' . plugin_basename( XACUBE_FILE ), 'xacube_action_links' );
 
 /**
- * The menu icon: a speech bubble. Filled rather than stroked, because WordPress repaints data-URI
- * menu icons to the admin colour scheme by rewriting their fill.
+ * The menu icon: the XACUBE favicon.
  *
  * @return string
  */
 function xacube_menu_icon() {
-	$svg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path fill="black" fill-rule="evenodd" d="M4 2.5h12a2.5 2.5 0 0 1 2.5 2.5v8a2.5 2.5 0 0 1-2.5 2.5H9l-3.4 2.9a.6.6 0 0 1-1-.46V15.5H4A2.5 2.5 0 0 1 1.5 13V5A2.5 2.5 0 0 1 4 2.5zM4.75 9a1.25 1.25 0 1 0 2.5 0a1.25 1.25 0 1 0-2.5 0zM8.75 9a1.25 1.25 0 1 0 2.5 0a1.25 1.25 0 1 0-2.5 0zM12.75 9a1.25 1.25 0 1 0 2.5 0a1.25 1.25 0 1 0-2.5 0z"/></svg>';
+	return xacube_logo_url();
+}
 
-	return 'data:image/svg+xml;base64,' . base64_encode( $svg ); // phpcs:ignore WordPress.PHP.DiscouragedPHPFunctions.obfuscation_base64_encode
+/**
+ * The XACUBE favicon, shipped with the plugin.
+ *
+ * @return string
+ */
+function xacube_logo_url() {
+	return XACUBE_URL . 'assets/xacube-icon.png';
+}
+
+/**
+ * WordPress dims menu images until hovered, which washes out a coloured logo.
+ */
+function xacube_menu_icon_style() {
+	echo '<style>#adminmenu .toplevel_page_xacube .wp-menu-image img{opacity:1;width:20px;height:20px}</style>';
 }
 
 /**
@@ -120,7 +134,9 @@ function xacube_notices() {
 		'inbox_disconnected' => array( 'info', __( 'The inbox is disconnected from this WordPress.', 'xacube' ) ),
 		'connected'    => array( 'success', __( 'Connected. Your inbox now shows who signed-in users are.', 'xacube' ) ),
 		'forgotten'    => array( 'info', __( 'The secret key has been removed from this site, and signed-in users are no longer recognised.', 'xacube' ) ),
-		'no_config'    => array( 'danger', __( 'This copy of the plugin is not set up for a website. Download it from your XACUBE panel.', 'xacube' ) ),
+		'no_config'    => array( 'danger', __( 'Connect this website to XACUBE first.', 'xacube' ) ),
+		'site_connected' => array( 'success', __( 'Connected to XACUBE, and your domain is allowed.', 'xacube' ) ),
+		'site_disconnected' => array( 'info', __( 'This WordPress is no longer linked to a XACUBE website, and the chat is off.', 'xacube' ) ),
 		'err_state'    => array( 'danger', __( 'That connection request has expired or did not start on this site. Please try again.', 'xacube' ) ),
 		'err_exchange' => array( 'danger', __( 'XACUBE did not accept the connection. The link may have expired; please try again.', 'xacube' ) ),
 		'err_busy'     => array( 'warning', __( 'Too many attempts in a short time. Please wait a minute and try again.', 'xacube' ) ),
@@ -151,7 +167,6 @@ function xacube_icon( $name, $class = '' ) {
 		'user'     => '<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="m16 11 2 2 4-4"/>',
 		'key'      => '<path d="M2.586 17.414A2 2 0 0 0 2 18.828V21a1 1 0 0 0 1 1h3a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h1a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h.172a2 2 0 0 0 1.414-.586l.814-.814a6.5 6.5 0 1 0-4-4z"/><circle cx="16.5" cy="7.5" r=".5"/>',
 		'download' => '<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/><path d="M12 15V3"/>',
-		'cube'     => '<path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/>',
 	);
 	if ( ! isset( $paths[ $name ] ) ) {
 		return '';
@@ -332,25 +347,28 @@ function xacube_render_page() {
 }
 
 /**
- * Shown when this copy has no xacube-config.php: it did not come from a panel.
+ * Shown until this WordPress is linked to a XACUBE website.
  */
 function xacube_render_unconfigured() {
 	?>
 	<header class="xc-header">
 		<div class="xc-brand">
-			<span class="xc-brand__mark"><?php xacube_the_icon( 'cube' ); ?></span>
+			<img class="xc-brand__logo" src="<?php echo esc_url( xacube_logo_url() ); ?>" alt="" width="44" height="44">
 			<span class="xc-brand__name">XACUBE</span>
 		</div>
 	</header>
+	<?php xacube_render_notice(); ?>
 	<section class="xc-card xc-empty">
-		<span class="xc-empty__icon"><?php xacube_the_icon( 'download' ); ?></span>
-		<h2 class="xc-empty__title"><?php esc_html_e( 'Download the plugin from your XACUBE panel', 'xacube' ); ?></h2>
-		<p><?php esc_html_e( 'This copy of the plugin is not linked to any of your websites, so the chat is not shown.', 'xacube' ); ?></p>
-		<ol class="xc-steps">
-			<li><?php esc_html_e( 'Sign in to your XACUBE panel and open Websites.', 'xacube' ); ?></li>
-			<li><?php esc_html_e( 'Choose this website, or add it, and download the WordPress plugin from its page.', 'xacube' ); ?></li>
-			<li><?php esc_html_e( 'Install that copy in place of this one. It comes already set up, so the chat goes live as soon as you activate it.', 'xacube' ); ?></li>
-		</ol>
+		<span class="xc-empty__icon"><?php xacube_the_icon( 'chat' ); ?></span>
+		<h2 class="xc-empty__title"><?php esc_html_e( 'Connect this website to XACUBE', 'xacube' ); ?></h2>
+		<p><?php esc_html_e( 'Sign in and choose your workspace. XACUBE confirms this is your website and allows its domain, then the chat goes live and you can answer visitors from WordPress.', 'xacube' ); ?></p>
+		<?php xacube_form_open( 'xacube_connect', array( 'data-xc-pending' => __( 'Connecting…', 'xacube' ) ) ); ?>
+			<button type="submit" class="xc-button xc-button--primary">
+				<?php xacube_the_icon( 'key' ); ?>
+				<span><?php esc_html_e( 'Connect to XACUBE', 'xacube' ); ?></span>
+			</button>
+		</form>
+		<p class="xc-muted"><?php esc_html_e( 'No account yet? You can create one for free on the next page.', 'xacube' ); ?></p>
 	</section>
 	<?php
 }
@@ -364,7 +382,7 @@ function xacube_render_header( $config ) {
 	?>
 	<header class="xc-header">
 		<div class="xc-brand">
-			<span class="xc-brand__mark"><?php xacube_the_icon( 'cube' ); ?></span>
+			<img class="xc-brand__logo" src="<?php echo esc_url( xacube_logo_url() ); ?>" alt="" width="44" height="44">
 			<div>
 				<span class="xc-brand__name">XACUBE</span>
 				<p class="xc-header__sub">
@@ -604,7 +622,7 @@ function xacube_render_details( $config ) {
 			</div>
 			<?php if ( $generated ) : ?>
 				<div>
-					<dt><?php esc_html_e( 'Downloaded', 'xacube' ); ?></dt>
+					<dt><?php esc_html_e( 'Set up on', 'xacube' ); ?></dt>
 					<dd><?php echo esc_html( xacube_digits( wp_date( get_option( 'date_format' ), $generated ) ) ); ?></dd>
 				</div>
 			<?php endif; ?>
@@ -613,6 +631,13 @@ function xacube_render_details( $config ) {
 				<dd><code dir="ltr"><?php echo esc_html( XACUBE_VERSION ); ?></code></dd>
 			</div>
 		</dl>
+		<?php if ( ! xacube_config_is_file() ) : ?>
+			<div class="xc-card__foot">
+				<?php xacube_form_open( 'xacube_site_disconnect', array( 'data-xc-confirm' => __( 'Unlink this WordPress from its XACUBE website? The chat stops showing until you connect again.', 'xacube' ) ) ); ?>
+					<button type="submit" class="xc-button xc-button--ghost-danger"><?php esc_html_e( 'Connect a different website', 'xacube' ); ?></button>
+				</form>
+			</div>
+		<?php endif; ?>
 	</section>
 	<?php
 }

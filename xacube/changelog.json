@@ -1,6 +1,24 @@
 {
   "releases": [
     {
+      "version": "1.4.0",
+      "date": "2026-11-09",
+      "requires": "6.5",
+      "requiresPhp": "7.4",
+      "changes": {
+        "en": [
+          "One plugin for every website: install it, press Connect to XACUBE, sign in, and your site is set up and verified.",
+          "Your domain is allowed automatically when you connect, and the inbox is connected in the same step.",
+          "The XACUBE logo now appears in the WordPress menu, the Live chat panel and the plugin's pages."
+        ],
+        "fa": [
+          "یک افزونه برای همهٔ وب‌سایت‌ها: نصب کنید، «اتصال به XACUBE» را بزنید و وارد شوید تا سایت‌تان راه‌اندازی و تأیید شود.",
+          "هنگام اتصال، دامنهٔ شما خودکار مجاز می‌شود و صندوق گفتگو هم در همان مرحله وصل می‌شود.",
+          "لوگوی XACUBE اکنون در منوی وردپرس، پنل گفتگوی زنده و صفحه‌های افزونه نمایش داده می‌شود."
+        ]
+      }
+    },
+    {
       "version": "1.3.0",
       "date": "2026-11-09",
       "requires": "6.5",

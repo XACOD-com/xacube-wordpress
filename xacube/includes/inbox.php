@@ -222,10 +222,11 @@ function xacube_inbox_admin_bar( $bar ) {
  * The Live chat panel, first on the WordPress Dashboard.
  */
 function xacube_inbox_dashboard_setup() {
-	if ( ! current_user_can( 'manage_options' ) || ! xacube_config() ) {
+	if ( ! current_user_can( 'manage_options' ) ) {
 		return;
 	}
-	wp_add_dashboard_widget( 'xacube_chats', __( 'Live chat', 'xacube' ), 'xacube_render_dashboard', null, null, 'normal', 'high' );
+	$logo = '<img class="xc-dash-logo" src="' . esc_url( xacube_logo_url() ) . '" alt="" width="20" height="20">';
+	wp_add_dashboard_widget( 'xacube_chats', $logo . esc_html__( 'Live chat', 'xacube' ), 'xacube_render_dashboard', null, null, 'normal', 'high' );
 }
 
 /**
@@ -234,11 +235,8 @@ function xacube_inbox_dashboard_setup() {
  */
 function xacube_render_dashboard() {
 	$config = xacube_config();
-	if ( ! $config ) {
-		return;
-	}
 
-	if ( xacube_inbox_grant() ) {
+	if ( $config && xacube_inbox_grant() ) {
 		printf(
 			'<iframe id="xc-inbox-frame" class="xc-dash-frame" src="%1$s" title="%2$s" allow="autoplay; clipboard-write"></iframe>',
 			esc_url( xacube_inbox_frame_url( $config ) ),
@@ -254,12 +252,12 @@ function xacube_render_dashboard() {
 	}
 	?>
 	<div class="xacube xc-dash-connect">
-		<p><?php esc_html_e( 'Connect once to read and answer your chats right here.', 'xacube' ); ?></p>
+		<p><?php $config ? esc_html_e( 'Connect once to read and answer your chats right here.', 'xacube' ) : esc_html_e( 'Connect this website to XACUBE to show the chat and answer visitors right here.', 'xacube' ); ?></p>
 		<?php xacube_form_open( 'xacube_connect', array( 'data-xc-pending' => __( 'Connecting…', 'xacube' ) ) ); ?>
 			<input type="hidden" name="purpose" value="inbox">
 			<button type="submit" class="xc-button xc-button--primary">
 				<?php xacube_the_icon( 'key' ); ?>
-				<span><?php esc_html_e( 'Connect your inbox', 'xacube' ); ?></span>
+				<span><?php $config ? esc_html_e( 'Connect your inbox', 'xacube' ) : esc_html_e( 'Connect to XACUBE', 'xacube' ); ?></span>
 			</button>
 		</form>
 	</div>
