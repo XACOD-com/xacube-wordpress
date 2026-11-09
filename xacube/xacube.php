@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       XACUBE Live Chat
  * Description:       Live chat on your website, answered from your XACUBE inbox or right inside WordPress.
- * Version:           1.4.0
+ * Version:           1.4.1
  * Requires at least: 6.5
  * Requires PHP:      7.4
  * Update URI:        https://app.xacube.ir/api/plugin/wordpress/update
@@ -17,7 +17,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'XACUBE_VERSION', '1.4.0' );
+define( 'XACUBE_VERSION', '1.4.1' );
 defined( 'XACUBE_APP_ORIGIN' ) || define( 'XACUBE_APP_ORIGIN', 'https://app.xacube.ir' );
 define( 'XACUBE_FILE', __FILE__ );
 define( 'XACUBE_DIR', plugin_dir_path( __FILE__ ) );
