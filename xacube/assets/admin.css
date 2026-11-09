@@ -605,3 +605,6 @@ body.xacube_page_xacube-inbox #wpfooter { display: none; }
 .xc-dash-frame { display: block; width: 100%; height: 600px; border: 0; }
 .xc-dash-foot { margin: 0; padding: 10px 12px; border-block-start: 1px solid #E2E8F0; text-align: end; }
 .xc-dash-connect { padding: 4px 12px 14px; }
+.xc-brand__logo { display: block; flex: none; width: 44px; height: 44px; border-radius: 12px; }
+.xc-dash-logo { width: 20px; height: 20px; margin-inline-end: 8px; border-radius: 5px; vertical-align: -4px; }
+.xc-empty form { margin-block: 16px 12px; }
