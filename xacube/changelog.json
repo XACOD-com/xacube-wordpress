@@ -1,0 +1,52 @@
+{
+  "releases": [
+    {
+      "version": "1.2.0",
+      "date": "2026-11-09",
+      "requires": "6.5",
+      "requiresPhp": "7.4",
+      "changes": {
+        "en": [
+          "Update the plugin in one click from the WordPress Plugins screen, or turn on automatic updates.",
+          "Your site's connection is kept across updates."
+        ],
+        "fa": [
+          "به‌روزرسانی افزونه با یک کلیک از صفحهٔ افزونه‌های وردپرس، یا با روشن کردن به‌روزرسانی خودکار.",
+          "اتصال سایت شما پس از هر به‌روزرسانی حفظ می‌شود."
+        ]
+      }
+    },
+    {
+      "version": "1.1.0",
+      "date": "2026-11-09",
+      "requires": "6.5",
+      "requiresPhp": "7.4",
+      "changes": {
+        "en": [
+          "Answer live chats from your XACUBE inbox without leaving WordPress admin.",
+          "Connecting a new domain now asks you to confirm it first."
+        ],
+        "fa": [
+          "پاسخ به گفتگوهای زنده از صندوق XACUBE، بدون خروج از پیشخوان وردپرس.",
+          "اتصال دامنهٔ جدید اکنون پیش از انجام، از شما تأیید می‌گیرد."
+        ]
+      }
+    },
+    {
+      "version": "1.0.0",
+      "date": "2026-11-04",
+      "requires": "6.5",
+      "requiresPhp": "7.4",
+      "changes": {
+        "en": [
+          "First release: install the plugin and the chat appears on your site, already set up for it.",
+          "Recognise signed-in WordPress users in your inbox."
+        ],
+        "fa": [
+          "نخستین نسخه: افزونه را نصب کنید تا گفتگو، از پیش تنظیم‌شده، روی سایت‌تان نمایش داده شود.",
+          "شناسایی کاربران واردشدهٔ وردپرس در صندوق گفتگو."
+        ]
+      }
+    }
+  ]
+}
