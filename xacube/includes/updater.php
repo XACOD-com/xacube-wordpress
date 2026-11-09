@@ -81,6 +81,7 @@ function xacube_update_check( $update, $plugin_data, $plugin_file ) {
 		'package'      => $release['package'],
 		'requires'     => isset( $release['requires'] ) ? (string) $release['requires'] : '',
 		'requires_php' => isset( $release['requiresPhp'] ) ? (string) $release['requiresPhp'] : '',
+		'icons'        => array( '1x' => XACUBE_URL . 'assets/xacube-icon.png' ),
 	);
 }
 
